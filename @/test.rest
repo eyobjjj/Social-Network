@@ -1,0 +1,27 @@
+# GET http://127.0.0.1:8000/api
+# Content-Type: application/json
+# Authorization: token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyMzAzOTc1LCJpYXQiOjE3MTIzMDIxNzUsImp0aSI6IjFmOWRhOGY3ZjYzYjQ0NjE5OTVjOGQzNWQzY2E4MTZhIiwidXNlcl9pZCI6MX0.RTetwbIN68c5w-l4BmbZli7PO4bAyqoKJ8rtiYEodCY
+
+
+# POST http://127.0.0.1:8000/api/token
+# Content-Type: application/json
+
+# { "username": "admin", "password": "admin" }
+
+
+
+# {
+#     "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyMTM5MjI5MSwiaWF0IjoxNzEyNzUyMjkxLCJqdGkiOiJlYWNkMWZmMjg1NDQ0YTlmYWVlZmJhMjMxODJhOTU0MSIsInVzZXJfaWQiOjN9.jWVFO1v7pjnkX8R3Z6ZYNsAkg-12XNcnSbSUoTuZtVs",
+#     "access": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1MzQ0MjkxLCJpYXQiOjE3MTI3NTIyOTEsImp0aSI6ImJiMTRjZWRlOTQ2MTRhMjViZmY2OTdmMmU1MjIyZGUyIiwidXNlcl9pZCI6M30.pHberXaWJ3HGEYCc7yTK8mldhr-j2q9BpQvmNeyrc80"
+# }
+
+
+
+
+#GET http://127.0.0.1:8000/api/chatMassage/a
+GET http://127.0.0.1:8000/api/user
+#GET http://127.0.0.1:8000/api/post
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1Njc1MzM1LCJpYXQiOjE3MTMwODMzMzUsImp0aSI6IjIwZjQwMjQ4M2E0YzQ1MTdhMjFjNTU3MjU2ODQzMTU1IiwidXNlcl9pZCI6M30.j84KDuNE535w5Mu3TAvy7bIDQjPFe6Uz2KyqtmsXyFw
+
+

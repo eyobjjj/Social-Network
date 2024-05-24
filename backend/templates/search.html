@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}chat{% endblock title %}
+{% block content %}
+<body style="
+background: rgb(98, 98, 107);
+">
+    <div>
+        <center><h1>you search <strong>[ {{ search }} ]</strong></h1></center>
+
+        <div style="display: grid;
+        grid-template-columns: 1fr 3fr;">
+                        {% comment %} search username {% endcomment %}
+            <div>
+                {% if username_counter == 0 %}
+                    <h1>No results found username...</h1>
+                {% else %}
+                    <h3>Username-Results: {{ username_counter }}</h3>
+                    <ul >
+                        {% for result in username %}
+                            <a href="/profile/{{ result.username }}">
+                                <img class="profile-image" src="{{ result.profileimg.url }}">
+                                <spam class="username" style="margin-top: 15px;
+                                                             position: absolute">@{{ result.username }}</spam>
+                            </a>
+                            <hr />
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+                {% comment %} search post {% endcomment %}
+            <div>
+                {% if post_counter == 0 %}
+                    <h1>No results found post.</h1>
+                {% else %}
+                    <h3>Post-Results: {{ post_counter }}</h3>
+
+                    {% include 'post_cards.html' %}
+                
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</body>
+{% endblock %}

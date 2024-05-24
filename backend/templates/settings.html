@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}setting{% endblock title %}
+{% block content %}
+<body>
+    <div class="mt-32 h-max bg-blue-950 text-white">
+        <h1><a href="/"> home </a> User Profile {{ user.username }}</h1>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label>Profile Image:</label>
+            <img width='100px' hight='100px' src="{{ userprofile.profileimg.url }}" />
+            {{upform.profileimg}}
+            <br>
+            <label>first_name:</label>
+            {{uform.first_name}}
+            <br>
+            <label>last_name:</label>
+            {{uform.last_name}}
+            <br>
+            <label>username:</label>
+            {{uform.username}}
+            <br>
+            <label>email:</label>
+            {{uform.email}}
+            <br>
+            <label for="bio">Bio:</label>
+            {{upform.bio}}
+            <br>
+            <label>Location:</label>
+            {{upform.location}}
+            <button class="p-5 m-10 rounded-full bg-blue-600" type="submit">Update Profile</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </form>
+    </div>
+</body>
+
+
+{% endblock content %}

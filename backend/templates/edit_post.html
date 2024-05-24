@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}edit{% endblock title %}
+{% block content %}
+<div>
+    <h3>Upload Image</h3>
+        <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <img src="{{ post.image.url }}">
+        <input type="file" name="image" value="{{ post.image.url }}" required>
+        <input type="text" name="description" value="{{ post.description}}" placeholder="Enter description" required>
+        <button type="submit">Upload</button>
+    </form>
+</div>
+{% endblock content %}

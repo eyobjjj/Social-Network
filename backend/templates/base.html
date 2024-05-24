@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+
+    {% comment %}
+    <link href="static/tailwind.min.css" rel="stylesheet" />
+    {% endcomment %}
+    <link rel="stylesheet" href="{% static 'tailwind.min.css' %}" />
+    {% comment %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% endcomment %}
+  </head>
+  <body class="bg-gray-700">
+    <nav class="bg-white border-gray-200 fixed w-full z-20 top-0 bg-gray-900">
+      <div
+        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+      >
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADACAMAAAB/Pny7AAAAWlBMVEVzofv///9unvtpm/tmmftil/v5+//8/f/1+P/f6P6auvzc5v54pPvo7/6Wt/zh6v690f19p/uiv/yGrfyQs/yLsPy2zP3G1/3N3P3W4v7t8v5bk/usxf2xyf2c6gXpAAAJq0lEQVR4nO2d6ZqjKhCGtcAlblHcjd7/bR7NdIxJQAFByXny/Znunm71DVtRVZSW/T+SdfYDqNQPxlT9YEzVD8ZU/WBM1Q/GVBkC4/l+d5fve/JXOR/G68KmrgaSTApIn9btpZMjOhnGDeshyABhhOAuNH5p5cFQh6741U6FuVZBDhjAetPIZOWkuvJdxfcfX50H4zUjCfoAeQJBHjTb3c2typL8YZ8GU5fRZ5O880Rls3GZJp/asYjv35wEE2ZbJA+ecq2zheW/y0B6//YUGLe4caHcn/MW+PSreNfycRmo7j95g/HiNO10ozQO4kWZhFBDmdn8sHx+IlFDg2ksB9+2+uk+dYEjgjLpRt4+YDdu8kXjQtFRYOJy+sycVh+KF+ZCzfLXOPllcYm4HTJn2U+htz9hvPR+I4gutia5dSbBMj5S9tfVvLipknFtev3PkAITZ/9+aX0K2cNSWdwj/40mSl27C9O+iPD7JSCxP2G8FM//Hetg8QZZlokmIAljlX0M8iWMn82/CYQxH+5Sz7e4sHCA/ueQP66/hGkW0wzqJQy9LRap4bIpPM9XCxivXILjQTVNc9PC8myYJUz8erObYpqr8PLCp9tzQCxgBvz2W0pp/EgPCx6e91jAZO/Dy1E4btxgz9hnC5V/n1XXLWH8zy7tDMrmtFQLymN975q+CJoFTE3p0/jdKJLVNdfSMGDV09Y7nWwChNsnDKFNnChQsnr6vZ5OBpV7TUn+byWF8glDH6BQqLDTGj2jH8o+yK3ZKIhmGI+xokEe7mbpqK2uQJG1MAoQmWFi1v3A2r2/aTWxvOrmzzAN84bgDDu8jKP84AiY22I2S1eGqFPsmqIvmtb+FyHiPmFW5xsEF/n109U1YpaCcrlorq/QgCvpFafTjzIuntM0NcMkGysBCmTn6EZ/LwMr9ZYwxdayhvJUbuRsfUwqYPr7o/HDjPhSjeMd0DDJv49ZAGZygwzMZ2Yq1A4D+d945pwAHn8GmXDjaNosL5/q4UuaYQhfzwZMBCfpSPeQuc321gxT8d4T4UoIR8/O/6knyxOm5u8NOKr55zVdW/8/ASx8yTPMVaBrg5M3vGtog7evJy+IllbwDOML3RRwwokz6Bz/kL1Y9M/NmaDnFOGg5tmFck4sUkL5a7ziCSO8UCMoOALCpT4YVL7tG58wqXjnBsjJVkD4w4GlTI+wLA2mk5lDp4Dwuj2tyfc3brI+Y50LJ6Cki378q2Al1JYpZnjoVn12iQVMLz2JAoKgZaykmmAQ7fNjO84FL+44Zdq5n59Wruz5l1q4/ukw7s6xCtjJ+ibuXrsyjzUuca9sA8audy/WgBxc9nV47ea0MT3rDERbMGo261O+VZb0adNeplaqtFgA2zDue4RG/l4jEbbyIiCVnk3zdjezL2oXhXsunCaP+dYEoLJpdIsDZsqcOvsx+QTlNoym4apeUHDAdMV30ECwAeNNS0Oj3f+gRIisw8R1Go6L9/AVMJjqwHv6ACIHI9L6vqYYt1rhdBXmntOGLNI0egLDaoWp0bwHzCOBYjTm9di5auVQHavvMJZ8RtiRcqi+lE+Yr5BD3ao/YNyvggGL6lKdJ4Dvgimom/QZRpfjQYsQPRQhFGwyRjileuv4QuemyaEnjXAlNRgnTHcLzzCXb9mXTYroLvvNrCYT9TjIwISxv8Ek+xPq6ZG7J8zX7P/HIVPTQw+L/YzuSKo6sc7ELHaaX9MykDFiXAuYIzKplAgFjIjQMgpwRI6bCiFKaOYdxvuW+QyxkkZZR04M1nwqaxWm+w5/JrCGDOOYltFCzDyx1wN03zFqai4YBbEz/Vo5qvh26DQxf61BhJlG8XEc2PyORnVm0mA84zeckLMTK9+P0McaE3eUCBJ2ss5HPQBNR13UqWKyUIobGO4MYFnMdJgdOTQHiB7/Y8O4xGAbDdhzGb2Ghp+YSwNracjUgiC+eGWIgwTUWOYqjO0TQ8fNbTV7n1GqxTUzTkvP/9mCGWdoE2PoDB/zJozdFrvqKmgRrKfqrlQE6irTtjd4ZfVfg7lWfVWTs5/+TbCR4s6AuZYIYcjMstPwVn0COoyZiWewdaqKsc6YuOPEm+VjGDD6D4qJCzZLSDHGTGteN8OMoMw2jHkbToi2a3uxzBnj8huB4xQia50xLfUUMo6iaywY37BozaMemxSMYY4NyHjOtzFhdJXwkRNwHapesZpNGjUZ16HdFatZ56FEQdFTMkVgOmO2Z/RkeSEYuzYF5sZ5Mny1XOsh9WK2RU9iFoXxjOhoaM2JyQ9jhwaEa8DiLuq5URXYgGGD6CmMEjB2evaw2d6S8cN4J5vPa4EyYRjb1VqdYFvMOLkMzHR067yBg3iMZREYOz1tTgOxWmRcNc7PsjnZKT87YOzuJL+zyIDhhrHtQa4C9i6xM352wtghsQ7GwdTji0pgbLcJ4EgcLF6IUOQlB10T4I8C47qEcvHaqmJvbPAvPTiH4IhOZBIwY2fz68IRe+OCFIsl824CiXdpeH7baz4HBSBVVVXqxSBuqtepJlshVgLGbzPNNcsiwcVSGsYPE81TgDSLKIzfEqx59IOoESMJ0zVE+7opOfZFYeI00W/R7KoOzQvjtaQ8wDhDPGGYnTDXIed8Y9Q+YZEdvxRMOC6Rx2xn8EctOaUwcVpgyiviNLHsfU/MCOO6nvfiZxu/dV0/bvrccQ6zksfG30jz4YFpk5JUad2El7vatk4HUmT4diCI9VESUw4mvKGp5BV2Hhq/nl6heCDHJJQoeJmCZUT2Aljb6Rc8MCYI59IWzCvM+QElQETRe9Ws+FAvBUVIpGDyBowdB8fs6hnCyXXfyy1eYEazKzotIQthNaNlhrmnZJ/SOOAEylplhplOzh3v6QfrvUSxIhjbbstjQ8tgKZqPaTC2XSfRYRMbQFmpf/vg0mr26+AY5zigItXxWsjXLcC4ydePg3DBVR19L8zkfuktrdYywkmjB4W2OfPjNNK2jN7LDmpCoe80va4pdPjGwYEqVv+aznWYSd1gqeUBfEsULyvcMKOuxGK8KFUYZFTBKHxzEMyoluTRTs/MyBFlgTLDeAfMZIVWSZ5ZUkkaAAiivCDNISQ2nxMwbipSZCDiGbiXnc4KMtRXnSP+Tbzu2bitK5JkcHd2rDBNFFNF8IRUdat16qJIJArgx2EzIY0mKcLO5MRBE9r9n8nBM/7EysqgT+s2jI/qWksJB5tcv4uv4UiVVkPfk2AUIX0/TK63Nrxc42cV/cMlFdOcdPd6PjW5RVU+l5SkYUzUD8ZU/WBM1Q/GVP1gTNUPxlT9B/xkjf4nnBmaAAAAAElFTkSuQmCC"
+            class="h-8"
+            alt="Logo"
+          />
+          <span
+            class="self-center text-2xl font-semibold whitespace-nowrap text-white"
+            >Twitter</span
+          >
+        </a>
+        <div
+          class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
+        >
+          <button
+            type="button"
+            class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 focus:ring-gray-600"
+            id="user-menu-button"
+            aria-expanded="false"
+            data-dropdown-toggle="user-dropdown"
+            data-dropdown-placement="bottom"
+          >
+            <span class="sr-only">Open user menu</span>
+            <a href="/profile/{{user.username}}">
+              <img
+                class="w-8 h-8 rounded-full"
+                src="{{ userprofile.profileimg.url }}"
+                alt="user photo"
+              /><strong class="text-white">@{{ user.username }}</strong>
+            </a>
+          </button>
+          <!-- Dropdown menu -->
+          <div
+            class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow bg-gray-700 divide-gray-600"
+            id="user-dropdown"
+          >
+            <div class="px-4 py-3">
+              <span class="block text-sm text-gray-900 text-white"
+                >Bonnie Green</span
+              >
+              <span class="block text-sm text-gray-500 truncate text-gray-400"
+                >name@flowbite.com</span
+              >
+            </div>
+            <ul class="py-2" aria-labelledby="user-menu-button">
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white"
+                  >Dashboard</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white"
+                  >Settings</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white"
+                  >Earnings</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:bg-gray-600 text-gray-200 hover:text-white"
+                  >Sign out</a
+                >
+              </li>
+            </ul>
+          </div>
+          <button
+            data-collapse-toggle="navbar-user"
+            type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
+            aria-controls="navbar-user"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <input
+          type="text"
+          id="search-navbar"
+          class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search..."
+        />
+
+        <div
+          class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+          id="navbar-user"
+        >
+          <ul
+            class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white bg-gray-800 md:bg-gray-900 border-gray-700"
+          >
+            <li>
+              <a
+                href="/"
+                class="block py-2 px-3 text-gray-100 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="{% url 'chat' %}"
+                class="block py-2 px-3 text-gray-100 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+                >Chat-{{message.count}}</a
+              >
+            </li>
+            <li>
+              <a
+                href="{% url 'upload' %}"
+                class="block py-2 px-3 text-gray-100 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+                >Upload</a
+              >
+            </li>
+            <li>
+              <a
+                href="{% url 'logout' %}"
+                class="block py-2 px-3 text-gray-100 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="mb-28"></div>
+    {% block content %} {% endblock %}
+
+    {% comment %} <footer class="fixed bottom-0 z-20 w-full p-4 bg-black">
+      <div class="flex justify-between text-white">
+        <div class="">home</div>
+        <div class="">home</div>
+        <div class="">home</div>
+        <div class="">home</div>
+      </div>
+    </footer> {% endcomment %}
+  </body>
+</html>
