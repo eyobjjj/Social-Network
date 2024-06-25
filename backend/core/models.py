@@ -2,16 +2,26 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 
+
+
+from django.core.exceptions import ValidationError
+
+def file_size_limitation(size:int):
+    def validate_file_size(value):
+        max_size = size * 1024 * 1024
+        if value.size > max_size:
+            raise ValidationError('File size exceeds the limit.')
+    return validate_file_size
+
 class Catagory(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
         return self.name
 
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User,related_name='user_profile', on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
-    profileimg = models.ImageField(upload_to='profile_images', default='default-profile-img.jpg')
+    profileimg = models.ImageField(upload_to='profile_images', default='default-profile-img.jpg',validators=[file_size_limitation(5)])
     location = models.CharField(max_length = 100, blank = True)
     date_joined = models.DateTimeField(auto_now_add=True)
     friend = models.ManyToManyField(User, related_name='friends')
@@ -25,10 +35,11 @@ class UserProfile(models.Model):
 
 from django.utils import timezone
 from django.utils.timesince import timesince
+
 class Post(models.Model):
     user = models.ForeignKey(UserProfile, related_name='user_post', on_delete=models.CASCADE)
     catagory = models.ForeignKey(Catagory, on_delete=models.CASCADE)
-    image = models.FileField(upload_to='post_images',null=True, validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv', 'apng','avif','gif','jpg','jpeg','jfif','pjpeg','pjp','png','svg','webp','bmp','ico','cur','tif','tiff'])])
+    image = models.FileField(upload_to='post_images',null=True, validators=[file_size_limitation(20),FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv', 'apng','avif','gif','jpg','jpeg','jfif','pjpeg','pjp','png','svg','webp','bmp','ico','cur','tif','tiff'])])
     description = models.TextField()
     no_of_comments = models.IntegerField(default=0)
     likes = models.ManyToManyField(UserProfile, related_name='post_like', blank=True)
@@ -97,7 +108,7 @@ class ChatMassage(models.Model):
     sender = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='sent_messages')
     receiver = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='received_messages')
     massage = models.TextField(blank=True)
-    file = models.FileField(upload_to="chat_file", blank=True)
+    file = models.FileField(upload_to="chat_file", blank=True, validators=[file_size_limitation(20)])
     is_show = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -134,7 +145,8 @@ class ChatMassage(models.Model):
 # send_mail(
 #     "Subject here",
 #     "Here is the message.",
-#     "jjjhacking@gmail.com",
-#     ["eyobjjj@gmail.com"],
+#     "sender@gmail.com",
+#     ["receiver@gmail.com"],
 #     fail_silently=False,
 # )
+
